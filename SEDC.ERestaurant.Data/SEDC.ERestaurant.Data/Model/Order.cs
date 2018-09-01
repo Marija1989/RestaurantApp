@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,15 +9,21 @@ namespace SEDC.ERestaurant.Data.Model
 {
     public class Order
     {
+        [Key]
         public int Id { get; set; }
-        private float TotalPrice { get; }
-        private int TotalQuantity { get; }
+        public  double? TotalPrice => Items?.Sum(loi => loi.Quantity * loi.Item.Price);
+        public  int? TotalQuantity => Items?.Sum(i => i.Quantity);
+        [Required]
         public DateTime DateCreated { get; set; }
         public  Status StatusOfOrder { get; set; }
         public string Comment { get; set; }
-        public int Table { get; set; }
+        [Required]
+        [MaxLength(3)]
+        public string Table { get; set; }
 
-        public List<Item> Items { get; set; }
+        public List<OrderItem> Items { get; set; }
+
+
 
     }
 }

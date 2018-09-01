@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SEDC.ERestaurant.Data.Model
 {
-    public enum Type : byte
+    public enum MenuType :byte
     {
         Undefined = 0,
         Meals = 1,
