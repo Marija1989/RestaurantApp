@@ -44,26 +44,26 @@ namespace SEDC.ERestaurant.Business.Service
 
         public ServiceResult<DtoMenu> Load(int id)
         {
-            //try
-            //{
-            //    var result = Repository.GetById(id);
-            //    var resultOne = new DtoMenu();
-            //    result.ForEach(m => resultList.Add(new DtoMenu(m)));
-            //    return new ServiceResult<DtoMenu>()
-            //    {
-            //        Item = resultOne,
-            //        Success = true
-            //    };
-            //}
-            //catch (Exception ex)
-            //{
-            //    return new ServiceResult<DtoMenu>()
-            //    {
-            //        Success = false,
-            //        Exception = ex,
-            //        ErrorMessage = ex.Message
-            //    };
-            //}
+            try
+            {
+                var result = Repository.GetById(id);
+                var resultOne = new DtoMenu(result);
+                resultOne.RestaurantName = result.RestaurantName;
+                return new ServiceResult<DtoMenu>()
+                {
+                    Item = resultOne,
+                    Success = true
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResult<DtoMenu>()
+                {
+                    Success = false,
+                    Exception = ex,
+                    ErrorMessage = ex.Message
+                };
+            }
             throw new NotImplementedException();
 
         }

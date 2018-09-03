@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SEDC.ERestaurant.Business.Model;
 using SEDC.ERestaurant.Business.Service;
 using SEDC.ERestaurant.Data.Model;
+using System.Linq;
 
 namespace UnitTest.Tests
 {
@@ -26,16 +27,24 @@ namespace UnitTest.Tests
 
 
             var menuService = new MenuServices();
-            menuService.Add(menu);
-            menuService.Add(menu2);
+            var resultOne = menuService.Add(menu);
+            var resultThree = menuService.Add(menu2);
 
             var result = menuService.LoadAll();
 
 
             //assert
 
+            Assert.IsNotNull(resultThree);
+            Assert.IsTrue(resultThree.Success);
+            Assert.IsNotNull(resultOne);
+            Assert.IsTrue(resultOne.Success);
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Success);
+            Assert.IsNotNull(result.ListItems);
+            Assert.IsTrue(result.ListItems.Any());
+
+
         }
     }
 }
