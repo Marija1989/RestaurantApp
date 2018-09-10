@@ -15,7 +15,7 @@ namespace SEDC.ERestaurant.Data.Model
         public  int? TotalQuantity => Items?.Sum(i => i.Quantity);
         [Required]
         public DateTime DateCreated { get; set; }
-        public  Status StatusOfOrder { get; set; }
+        public  byte StatusOfOrder { get; set; }
         public string Comment { get; set; }
         [Required]
         [MaxLength(3)]

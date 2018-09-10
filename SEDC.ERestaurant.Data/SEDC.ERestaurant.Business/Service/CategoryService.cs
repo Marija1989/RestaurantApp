@@ -11,10 +11,10 @@ namespace SEDC.ERestaurant.Business.Service
 {
     public class CategoryService : BaseService<CategoryRepository>, IService<DtoCategory>
     {
-        private readonly MenuRepository _menuRepository;
+        //private readonly MenuRepository _menuRepository;
         public CategoryService()
         {
-            _menuRepository = new MenuRepository();
+            //_menuRepository = new MenuRepository();
         }
         public ServiceResult<DtoCategory> Add(DtoCategory type)
         {
@@ -22,12 +22,13 @@ namespace SEDC.ERestaurant.Business.Service
             try
             {
 
-                var resultMenu = _menuRepository.GetById(type.MenuId);
+                var resultMenu = /*_menuRepository.GetById(type.MenuId);*/ Repository.DbContext.Menues.Any(m => m.Id == type.MenuId);
 
-                if (resultMenu != null)
+                if (resultMenu)
                 {
                     var result = Repository.Create(new Category()
                     {
+                        Id = 0,
                         Name = type.CategoryName,
                         MenuId = type.MenuId
 
@@ -38,6 +39,15 @@ namespace SEDC.ERestaurant.Business.Service
                         Success = true
                     };
                     return resultFinal;
+                }
+                else
+                {
+                    return new ServiceResult<DtoCategory>()
+                    {
+                       Success = false,
+                       
+
+                    };
                 }
    
             }

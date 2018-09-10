@@ -11,6 +11,7 @@ namespace SEDC.ERestaurant.Business.Service
 {
     public class MenuServices : BaseService<MenuRepository>, IService<DtoMenu>
     {
+
         public ServiceResult<DtoMenu> Add(DtoMenu item)
         {
             try
@@ -36,6 +37,8 @@ namespace SEDC.ERestaurant.Business.Service
                 };
             }
         }
+
+       
 
         public ServiceResult<DtoMenu> Edit(DtoMenu item)
         {
@@ -64,7 +67,7 @@ namespace SEDC.ERestaurant.Business.Service
                     ErrorMessage = ex.Message
                 };
             }
-            throw new NotImplementedException();
+            
 
         }
 

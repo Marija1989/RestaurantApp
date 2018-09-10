@@ -1,4 +1,5 @@
-﻿using SEDC.ERestaurant.Data.Repository;
+﻿using SEDC.ERestaurant.Data;
+using SEDC.ERestaurant.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace SEDC.ERestaurant.Business.Service
 
         private T _repository;
         public T Repository  => _repository;
-
+        protected RestourantContext DbContext => _repository.DbContext;
         public BaseService()
         {
             _repository = Activator.CreateInstance<T>();

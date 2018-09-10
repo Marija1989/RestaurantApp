@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SEDC.ERestaurant.Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,6 @@ namespace SEDC.ERestaurant.Business.Service
         ServiceResult<T> Add(T type);
         ServiceResult<T> Edit(T type);
         ServiceResult<T> Remove(T item);
+      
     }
 }
